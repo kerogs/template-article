@@ -1,0 +1,232 @@
+@import 'https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap';
+
+$colors: (
+    background: #fff,
+    text: #000,
+    text2: #494949,
+    border: #c4c4c4,
+    backgroundbis: #f7f7f7,
+);
+
+$colors-dark: (
+    background: #000,
+    text: #fff,
+    text2: #bebebe,
+    border: #2e2e2e,
+    backgroundbis: #181818,
+);
+
+:root {
+    @each $name, $color in $colors {
+        --color-#{$name}: #{$color};
+    }
+
+    --theme: 'light';
+}
+
+.darkmode {
+    @each $name, $color in $colors-dark {
+        --color-#{$name}: #{$color};
+    }
+
+    --theme: 'dark';
+}
+
+@function getColor($color-name) {
+    @return var(--color-#{$color-name})
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gothic A1', sans-serif;
+    color: getColor(text);
+    transition: .4s;
+}
+
+body {
+    background-color: getColor(background);
+}
+
+header {
+    border-bottom: 1px solid getColor(border);
+
+    nav {
+        margin: 16px 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+
+        // text height
+        line-height: 0px;
+
+        >div {
+            flex: 1;
+
+            &:nth-child(1) {
+                svg {
+                    cursor: pointer;
+                    height: 26px;
+                }
+            }
+
+            &:nth-child(2) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+
+                a {
+                    text-decoration: none;
+                    color: getColor(text);
+                }
+
+                h1 {
+                    text-align: center;
+                }
+            }
+
+            &:nth-child(3) {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 12px;
+
+                svg {
+                    cursor: pointer;
+                    height: 24px;
+                }
+            }
+        }
+    }
+}
+
+main {
+    max-width: 640px;
+    margin: 20px auto;
+
+    .head {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 60px 0;
+
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: normal;
+            text-align: center;
+        }
+    }
+
+    .content {
+        letter-spacing: 1px;
+
+        a {
+            color: getColor(text2);
+            font-weight: 800;
+        }
+
+        p {
+            margin: 20px 0;
+        }
+
+        h1 {
+            border-left: 6px solid getColor(border);
+            padding: 10px 0 10px 22px;
+            font-size: 1.6em;
+        }
+
+        img {
+            margin: 10px 0;
+            display: block;
+            justify-items: center;
+            max-width: 100%;
+        }
+
+        blockquote {
+            border: 6px getColor(border);
+            border-style: dashed solid;
+            padding: 10px 0 10px 22px;
+            background: getColor(backgroundbis);
+            margin: 10px 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 2px solid getColor(border);
+
+            th {
+                padding: 10px;
+                background-color: getColor(backgroundbis);
+                border: 1px solid getColor(border);
+            }
+
+            tr {
+                td {
+                    border: 1px solid getColor(border);
+                    padding: 10px;
+                }
+            }
+        }
+
+        details {
+            margin: 10px 0;
+            padding-left: 10px;
+
+            summary {
+                padding-bottom: 10px;
+                cursor: pointer;
+                font-weight: 800;
+                transform: translate(-10px);
+            }
+        }
+
+        ul {
+            margin: 10px 0;
+            padding-left: 16px;
+        }
+
+        pre {
+            padding: 10px;
+            background: getColor(backgroundbis);
+            border: 1px solid getColor(border);
+        }
+
+        code {
+            padding: 1px;
+            background: getColor(backgroundbis);
+            border: 1px solid getColor(border);
+        }
+    }
+}
+
+.actionbtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+        border: none;
+        padding: none;
+        background: none;
+        cursor: pointer;
+
+        svg {
+            $size: 24px;
+            width: $size;
+            height: $size;
+        }
+    }
+}
